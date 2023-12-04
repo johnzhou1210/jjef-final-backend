@@ -36,6 +36,36 @@ app.post('/createEntry', async (req, res) => {
     res.send("created entry");
 });
 
+/* Example To test: http://localhost:3000/updateEntry/3 
+    In postman body, pass in a JSON:
+    {
+        "completed": true,
+        "text": "watered the plants"
+    }
+*/
+app.put('/updateEntry/:entry_id', async(req, res) => {
+    const entryId = req.params.entry_id;
+    const updatedData = req.body;
+
+    try {
+        const entry = await Entry.findOne({
+            where: {
+                entry_id: parseInt(entryId),
+            },
+        });
+        if (!entry) {
+            return res.status(404).json({message : "Entry not found"});
+        }
+
+        await entry.update(updatedData);
+        res.json({message : 'Entry with entry id ${entryId} updated successfully', data: entry});
+    } catch (error) {
+        console.error('Error updating entry: ${error}');
+        res.status(500).json({message: "Internal server error"});
+    }
+    
+} )
+
 app.listen(port, () => {
     console.log("App listening on port " + port);
 })
