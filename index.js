@@ -23,15 +23,12 @@ app.get("/getAllEntries", async (req, res) => {
 });
 
 app.post("/createEntry", async (req, res) => {
-  let entryText = req.body;
+  let entry = req.body;
   //console.log(entryText);
   const createEntry = Entry.create({
-    completed: entry.completed,
     text: entry.text,
     priority: entry.priority,
     list_id: entry.list_id,
-    entry_id: entry.entry_id,
-    color: entry.color,
   });
 
   res.send("created entry");
