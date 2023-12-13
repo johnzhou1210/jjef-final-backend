@@ -23,7 +23,8 @@ app.get("/getAllEntries", async (req, res) => {
 });
 
 app.post("/createEntry", async (req, res) => {
-  let entry = req.query;
+  let entryText = req.body;
+  //console.log(entryText);
   const createEntry = Entry.create({
     completed: entry.completed,
     text: entry.text,
