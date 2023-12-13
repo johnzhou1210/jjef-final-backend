@@ -24,6 +24,8 @@ const Entry = db.define('entry', {
     },
     entry_id: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
         allowNull: false
     },
     color: {
