@@ -29,7 +29,7 @@ app.get("/getAllEntries", async (req, res) => {
 app.post("/createEntry", async (req, res) => {
   let entry = req.body;
   //console.log(entryText);
-  const createEntry = Entry.create({
+  const createEntry = await Entry.create({
     text: entry.text,
     priority: entry.priority,
     list_id: entry.list_id,
@@ -116,7 +116,8 @@ app.get("/getAllListIds", async (req, res) => {
 });
 
 app.get("/getAllLists", async (req, res) => {
-
+  const lists = await List.findAll();
+  res.send(JSON.stringify(lists, null, 2));
 });
 
 app.get("/getList/:list_id", async (req, res) => {
@@ -124,7 +125,8 @@ app.get("/getList/:list_id", async (req, res) => {
 });
 
 app.post("/createList", async (req, res) => {
-
+  const createList = await List.create();
+  res.send("created list");
 });
 
 app.delete("/deleteList/:list_id", async (req, res) => {
