@@ -19,7 +19,7 @@ const Entry = db.define('entry', {
     },
     list_id: {
         type: DataTypes.INTEGER,
-        defaultValue: 0,
+        defaultValue: 1,
         allowNull: false
     },
     entry_id: {
@@ -40,9 +40,4 @@ const Entry = db.define('entry', {
     }
 });
 
-async function syncEntry() {
-    // use alter to update models in the db when changed
-    await Entry.sync({alter: true});
-}
-
-module.exports = { Entry, syncEntry };
+module.exports = { Entry };
