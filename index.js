@@ -18,6 +18,8 @@ app.get("/dbSync", async (req, res) => {
   res.send("synced models with db");
 });
 
+// For entries
+
 app.get("/getAllEntries", async (req, res) => {
   const entries = await Entry.findAll();
   //console.log(entries.every(entry => entry instanceof Entry));
@@ -106,6 +108,29 @@ app.delete("/deleteEntry/:entry_id", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+// For lists
+
+app.get("/getAllListIds", async (req, res) => {
+
+});
+
+app.get("/getAllLists", async (req, res) => {
+
+});
+
+app.get("/getList/:list_id", async (req, res) => {
+
+});
+
+app.post("/createList", async (req, res) => {
+
+});
+
+app.delete("/deleteList/:list_id", async (req, res) => {
+
+});
+
 
 app.listen(port, () => {
   console.log("App listening on port " + port);
