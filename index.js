@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const port = 3001;
 
-const { Entry, syncEntry } = require("./models/entry");
-const { List, syncList } = require("./models/list");
+const { db } = require("./connectdb");
+const { Entry } = require("./models/entry");
+const { List } = require("./models/list");
 
 // built-in body parser
 app.use(express.json());
@@ -13,9 +14,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/dbSync", async (req, res) => {
-  syncEntry();
-  syncList();
-  res.send("synced models with db");
+  List.hasMany(Entry, {sourceKey: "list_id", foreignKey: "list_id"});
+  Entry.belongsTo(List, {foreignKey: "list_id"});
+  await db.sync({force: true});
+  res.send("Synced models with db");
 });
 
 // For entries
