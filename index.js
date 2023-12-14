@@ -3,6 +3,7 @@ const app = express();
 const port = 3001;
 
 const { Entry, syncEntry } = require("./models/entry");
+const { List, syncList } = require("./models/list");
 
 // built-in body parser
 app.use(express.json());
@@ -13,7 +14,8 @@ app.get("/", (req, res) => {
 
 app.get("/dbSync", async (req, res) => {
   syncEntry();
-  res.send("synced Entry with db");
+  syncList();
+  res.send("synced models with db");
 });
 
 app.get("/getAllEntries", async (req, res) => {
