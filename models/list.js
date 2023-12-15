@@ -8,11 +8,6 @@ const List = db.define('list', {
         autoIncrement: true,
         allowNull: false
     },
-    entry_ids: {
-        type: DataTypes.ARRAY(DataTypes.INTEGER),
-        defaultValue: [],
-        allowNull: false
-    },
     date_created: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
@@ -20,9 +15,4 @@ const List = db.define('list', {
     }
 });
 
-async function syncList() {
-    // use alter to update models in the db when changed
-    await List.sync({alter: true});
-}
-
-module.exports = { List, syncList };
+module.exports = { List };
