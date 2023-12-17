@@ -161,8 +161,16 @@ app.post("/createList", async (req, res) => {
   res.send("created list");
 });
 
+// Deletes list along with its entries
 app.delete("/deleteList/:list_id", async (req, res) => {
+  const list_id = req.params.list_id;
+  const deleteList = await List.destroy({
+    where: {
+      list_id: Number(list_id),
+    }
+  });
 
+  res.send("deleted");
 });
 
 
