@@ -134,12 +134,19 @@ app.get("/getAllLists", async (req, res) => {
   res.send(JSON.stringify(lists, null, 2));
 });
 
-// This gets the lists without the entries
-// app.get("/getList/:list_id", async (req, res) => {
-//   const list_id = req.params.list_id;
-//   const list = await List.findByPk(Number(list_id));
-//   res.send(list);
-// });
+// This gets the lists without their entries
+app.get("/getAllListsNoEntries", async (req, res) => {
+  const lists = await List.findAll();
+  res.send(JSON.stringify(lists, null, 2));
+});
+
+// This gets one list without the entries
+app.get("/getListNoEntries/:list_id", async (req, res) => {
+  const list_id = req.params.list_id;
+  const list = await List.findByPk(Number(list_id));
+  res.send(JSON.stringify(list, null, 2));
+});
+
 
 // This gets the lists with their entries
 app.get("/getList/:list_id", async (req, res) => {
@@ -148,11 +155,11 @@ app.get("/getList/:list_id", async (req, res) => {
   Entry.belongsTo(List, {foreignKey: "list_id"});
 
   const list_id = req.params.list_id;
-  const data = await List.findByPk(Number(list_id), {
+  const list = await List.findByPk(Number(list_id), {
     include: Entry
   });
 
-  res.send(JSON.stringify(data, null, 2));
+  res.send(JSON.stringify(list, null, 2));
 });
 
 // This creates a blank list
