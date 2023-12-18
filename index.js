@@ -162,6 +162,20 @@ app.get("/getList/:list_id", async (req, res) => {
   res.send(JSON.stringify(list, null, 2));
 });
 
+app.get("/getCurrentList", async(req, res) => {
+  const list = await List.findOne({
+    where: {
+      current_list: true
+    }
+  });
+
+  if (list === null) {
+    res.send("no current list");
+  } else {
+    res.send(String(list.dataValues.list_id));
+  }
+});
+
 app.put("/updateCurrentList/:list_id", async (req, res) => {
   const list_id = req.params.list_id;
 
