@@ -162,6 +162,38 @@ app.get("/getList/:list_id", async (req, res) => {
   res.send(JSON.stringify(list, null, 2));
 });
 
+app.put("/updateCurrentList/:list_id", async (req, res) => {
+  const list_id = req.params.list_id;
+
+  const list = await List.findOne({
+    where: {
+      current_list: true
+    }
+  });
+
+  if (list === null) { // no current list at start
+    const updateList = await List.update({current_list: true}, {
+      where: {
+        list_id: list_id
+      }
+    });
+  } else {
+    const current_list_id = list.dataValues.list_id;
+    const updatePreviousCurrentList = await List.update({current_list: false}, {
+      where: {
+        list_id: current_list_id
+      }
+    });
+    const updateList = await List.update({current_list: true}, {
+      where: {
+        list_id: list_id
+      }
+    });
+  }
+
+  res.send("updated current list");
+});
+
 // This creates a blank list
 app.post("/createList", async (req, res) => {
   const createList = await List.create();
