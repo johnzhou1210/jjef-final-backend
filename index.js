@@ -113,23 +113,40 @@ app.delete("/deleteEntry/:entry_id", async (req, res) => {
 
 // For lists
 
+// Example list id: let id = list_ids[0].list_id;
 app.get("/getAllListIds", async (req, res) => {
+  const list_ids = await List.findAll({
+    attributes: ['list_id'],
+  });
 
+  res.send(JSON.stringify(list_ids, null, 2));
 });
 
+// This gets all the lists with their respective entries
 app.get("/getAllLists", async (req, res) => {
-  const lists = await List.findAll();
+  List.hasMany(Entry, {sourceKey: "list_id", foreignKey: "list_id"});
+  Entry.belongsTo(List, {foreignKey: "list_id"});
+
+  const lists = await List.findAll({
+    include: Entry
+  });
+
   res.send(JSON.stringify(lists, null, 2));
 });
 
+// This gets the lists without the entries
+// app.get("/getList/:list_id", async (req, res) => {
+//   const list_id = req.params.list_id;
+//   const list = await List.findByPk(Number(list_id));
+//   res.send(list);
+// });
+
+// This gets the lists with their entries
 app.get("/getList/:list_id", async (req, res) => {
-
-});
-
-app.get("/getEntriesFromList/:list_id", async (req, res) => {
   // if exit server, then association is not kept, so added these two lines below for that issue
   List.hasMany(Entry, {sourceKey: "list_id", foreignKey: "list_id"});
   Entry.belongsTo(List, {foreignKey: "list_id"});
+
   const list_id = req.params.list_id;
   const data = await List.findByPk(Number(list_id), {
     include: Entry
@@ -138,6 +155,7 @@ app.get("/getEntriesFromList/:list_id", async (req, res) => {
   res.send(JSON.stringify(data, null, 2));
 });
 
+// This creates a blank list
 app.post("/createList", async (req, res) => {
   const createList = await List.create();
   res.send("created list");
