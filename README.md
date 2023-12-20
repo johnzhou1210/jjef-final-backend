@@ -3,16 +3,16 @@ Backend Requirements
 Database (PostgreSQL, Sequlize)
   1. Create 2 or more models, each with 2 or more fields
 
-  > Entry model: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/models/entry.js#L4C1-L41
+  > Entry model: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/models/entry.js#L4-L41
   
-  > List model: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/models/list.js#L4C1-L21C1
+  > List model: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/models/list.js#L4-L21
 
   2. 2 or models should be associated with each other
   > Places where associations were created:
 
-  > /dbSync: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L17C1-L18C50
+  > /dbSync: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L17-L18
   
-  > /getList: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L154C1-L155C50
+  > /getList: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L154-L155
   
   > /getAllLists: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L127-L128
 
@@ -21,13 +21,13 @@ PI (Express, Sequelize, CRUD operations)
 
   > /createEntry: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L31-L41
   
-  > /createList: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L212C1-L215
+  > /createList: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L212-L215
 
   2. Write routes that returns all instances from each model
 
-  > /getAllEntries: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L25C1-L29
+  > /getAllEntries: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L25-L29
 
-  > /getAllListsNoEntries: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L138C1-L141
+  > /getAllListsNoEntries: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L138-L141
 
   3. Write routes that return individual instances from each model based on their IDs
 
@@ -43,7 +43,7 @@ PI (Express, Sequelize, CRUD operations)
 
   5. Write routes to remove instances form each model, based on their IDs
 
-  > /deleteEntry/:entry_id: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L94C1-L112
+  > /deleteEntry/:entry_id: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L94-L112
 
   > /deleteList/:list_id: https://github.com/johnzhou1210/jjef-final-backend/blob/e2ce5bfdedb84346050fac34519e059ad05d6a8f/index.js#L217-L227
   
