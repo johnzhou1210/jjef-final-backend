@@ -1,3 +1,5 @@
+https://github.com/johnzhou1210/jjef-final-frontend
+
 Backend Requirements
 
 Database (PostgreSQL, Sequlize)
